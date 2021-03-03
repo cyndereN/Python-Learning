@@ -99,6 +99,17 @@ def Extended(pts):
     elif xmax == ymin:
         extreme = [xmin, ymin, ymax]
 
+    hull = extreme
 
+
+
+    for s in zone1 :
+        if determine(s, s+1, s+2) >= 0:
+            hull.append(s)
+        else:
+            del hull[-1]
+            del sorted_pts[s]
+
+    return hull
 
 
