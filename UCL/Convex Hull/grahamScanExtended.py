@@ -2,18 +2,11 @@ from matplotlib import pyplot as plt
 from random import randint
 from math import atan2
 import time
-# Returns a list of (x,y) coordinates of length 'num_points',
-# each x and y coordinate is chosen randomly from the range
-# 'min' up to 'max'.
+
 def create_points(ct,min=0,max=10000):
    return [[randint(min,max),randint(min,max)] \
          for _ in range(ct)]
 
-# Creates a scatter plot, input is a list of (x,y) coordinates.
-# The second input 'convex_hull' is another list of (x,y) coordinates
-# consisting of those points in 'coords' which make up the convex hull,
-# if not None, the elements of this list will be used to draw the outer
-# boundary (the convex hull surrounding the data points).
 def scatter_plot(coords,convex_hull=None):
    xs,ys=zip(*coords) # unzip into x and y coord lists
    plt.scatter(xs,ys) # plot the data points
@@ -29,114 +22,107 @@ def scatter_plot(coords,convex_hull=None):
    plt.show()
 
 
-# Returns the polar angle (radians) from p0 to p1.
-# If p1 is None, defaults to replacing it with the
-# global variable 'anchor', normally set in the
-# 'graham_scan' function.
-def polar_angle(p0,p1=None):
-   if p1==None: p1=anchor
-   y_span=p0[1]-p1[1]
-   x_span=p0[0]-p1[0]
-   return atan2(y_span,x_span)
+def get_region(points):
+    min_y = 0
+    min_x = 0
+    max_y = 0
+    max_x = 0
+
+    n = len(points)
+    for i in range(0, n):
+        if points[i][1] < points[min_y][1]:
+            min_y = i
+        if points[i][0] < points[min_x][0]:
+            min_x = i
+        if points[i][1] > points[max_y][1]:
+            max_y = i
+        if points[i][0] > points[max_x][0]:
+            max_x = i
+
+    a = points[max_y]  # top
+    b = points[min_x]  # left
+    c = points[min_y]  # bottom
+    d = points[max_x]  # right
+
+    print(a, b, c, d)
+
+    region_1 = [a, b, d]
+    region_2 = [b, c, d]
+
+    for p in points:
+        if p[0] < a[0] and p[1] > b[1] and det2(b, a, p) >= 0 or p[0] > a[0] and p[1] > d[1] and det2(a, d, p) >= 0:
+            region_1.append(p)
+        if p[0] < c[0] and p[1] < b[1] and det2(b, c, p) <= 0 or p[0] > c[0] and p[1] < d[1] and det2(c, d, p) <= 0:
+            region_2.append(p)
 
 
-# Returns the euclidean distance from p0 to p1,
-# square root is not applied for sake of speed.
-# If p1 is None, defaults to replacing it with the
-def distance(p0,p1=None):
-   if p1==None: p1=anchor
-   y_span=p0[1]-p1[1]
-   x_span=p0[0]-p1[0]
-   return y_span**2 + x_span**2
+    #print("region1 and 2",[region_1, region_2])
+
+    region_1_sorted = sorted(region_1, key=lambda x: x[0])
+    region_2_sorted = sorted(region_2, key=lambda x: -x[0])
+
+    return ([region_1_sorted, region_2_sorted])
+
+import matplotlib.pyplot as plt
+
+def det2(p1,p2,p3):
+   return (p2[0] - p1[0]) * (p3[1] - p1[1]) \
+          - (p2[1] - p1[1]) * (p3[0] - p1[0])
 
 
-# Returns the determinant of the 3x3 matrix...
-#  [p1(x) p1(y) 1]
-#  [p2(x) p2(y) 1]
-#  [p3(x) p3(y) 1]
-# If >0 then counter-clockwise
-# If <0 then clockwise
-# If =0 then collinear
-def det(p1,p2,p3):
-   return   (p2[0]-p1[0])*(p3[1]-p1[1]) \
-         -(p2[1]-p1[1])*(p3[0]-p1[0])
+def det(p1, p2, p3):
+    S = ((p2[1] - p1[1]) * (p3[0] - p2[0])) + ((p1[0] - p2[0]) * (p3[1] - p2[1]))
+    return S
 
 
-# Sorts in order of increasing polar angle from 'anchor' point.
-# 'anchor' variable is assumed to be global, set from within 'graham_scan'.
-# For any values with equal polar angles, a second sort is applied to
-# ensure increasing distance from the 'anchor' point.
-def quicksort(a):
-   if len(a)<=1: return a
-   smaller,equal,larger=[],[],[]
-   pivot_ang=polar_angle(a[randint(0,len(a)-1)]) # select random pivot
-   for pt in a:
-      point_ang=polar_angle(pt) # calculate current point angle
-      if   point_ang<pivot_ang:  smaller.append(pt)
-      elif point_ang==pivot_ang: equal.append(pt)
-      else: larger.append(pt)
-   return quicksort(smaller) \
-         +sorted(equal,key=distance) \
-         +quicksort(larger)
+def extendedgrahamscan(inputSet):
+    sorted_points = get_region(inputSet)
+
+    #scatter_plot(inputSet, sorted_points)
+    outputSet_1 = []
+    outputSet_1.append(sorted_points[0].pop(0))
+    outputSet_1.append(sorted_points[0][0])
+    for point in sorted_points[0][1:]:
+        while det(outputSet_1[-2], outputSet_1[-1], point) < 0:
+            if len(outputSet_1) >2:
+               outputSet_1.pop()
+        outputSet_1.append(point)
+
+    outputSet_2 = []
+    outputSet_2.append(sorted_points[1].pop(0))
+    outputSet_2.append(sorted_points[1][0])
+    for point in sorted_points[1][1:]:
+        while det(outputSet_2[-2], outputSet_2[-1],point) < 0:
+            if len(outputSet_2) > 2:
+               outputSet_2.pop()
+        outputSet_2.append(point)
+
+    hull = outputSet_1 + outputSet_2
+    #list(set(outputSet_1 + outputSet_2))
+    return hull
 
 
-def graham_scan_extended(points):
-   global anchor1
-
-   xmin = None
-   ymin = None
-   xmax = None
-   ymax = None
-
-   for i,(x,y) in enumerate(points):
-      if ymin==None or y<points[ymin][1]:
-         ymin=i
-      if y==points[ymin][1] and x<points[ymin][0]:
-         ymin=i
-
-   for i,(x,y) in enumerate(points):
-      if ymax==None or y>points[ymax][1]:
-         ymax=i
-      if y==points[ymax][1] and x>points[ymax][0]:
-         ymax=i
-
-   for i,(x,y) in enumerate(points):
-      if xmin==None or x<points[xmin][0]:
-         xmin=i
-      if x==points[xmin][0] and y<points[xmin][1]:
-         xmin=i
-
-   for i,(x,y) in enumerate(points):
-      if xmax==None or x>points[xmax][0]:
-         xmax=i
-      if x==points[xmax][0] and y>points[xmax][1]:
-         xmax=i
 
 
-   anchor1 = points[xmin]
+# inputSet and outputSet should have been defined above.
+# uncomment the next two lines only if you wish to test the plotting code before coding your algorithm
 
-   sorted_pts1 = quicksort(points)
-   del sorted_pts1[sorted_pts.index(anchor1)]
+#inputSet = [[1.5,2], [2,2] , [3, 3], [4,4], [1,4], [3,1], [1.5, 4.5], [2, 4], [3, 5], [3.5,1.5],[3.5,5], [5,3], [1.4,6], [3,2]]
+#print("sorted list",get_region(inputSet))
+inputSet = create_points(2000)
+outputSet = extendedgrahamscan(inputSet)
 
-   anchor1 = points[xmax]
 
-   sorted_pts2 = quicksort(points)
-   del sorted_pts2[sorted_pts.index(anchor1)]
+plt.figure()
 
-   anchor1 = points[ymax]
+#first do a scatter plot of the inputSet
+input_xs, input_ys = zip(*inputSet)
+plt.scatter(input_xs, input_ys)
 
-   sorted_pts3 = quicksort(points)
-   del sorted_pts3[sorted_pts.index(anchor1)]
+#then do a polygon plot of the computed covex hull
+outputSet.append(outputSet[0]) #first create a 'closed loop' by adding the first point at the end of the list
+output_xs, output_ys = zip(*outputSet)
+plt.plot(output_xs, output_ys)
 
-   anchor1 = points[ymin]
+plt.show()
 
-   sorted_pts4 = quicksort(points)
-   del sorted_pts4[sorted_pts.index(anchor1)]
-
-   hull = [points[xmin], points[ymin], points[xmax], points[ymax]]
-
-   max = points.size()-2
-
-   hull.append(sorted_pts3.index(max))
-   hull.append(sorted_pts4.index(0))
-   hull.append(sorted_pts2.index(max))
