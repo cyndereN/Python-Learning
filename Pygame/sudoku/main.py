@@ -8,7 +8,7 @@ base.geometry('0x0')
 base.resizable(False,False)
 pygame.init()
 def gen_sudoku():
-    def list_roll(ls,n):
+    def list_roll(ls,n):  #shift n times
         new = list(ls)
         for i in range(n):
             new.append(new.pop(0))
@@ -77,4 +77,4 @@ def main():
                     errors.remove(selected)
 if(__name__ == '__main__'):
     main()
-    showinfo('Congratulations!','Congratulations!You\'done it!')
+    showinfo('Congratulations!','Congratulations!You\'ve done it!')
