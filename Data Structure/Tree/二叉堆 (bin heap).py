@@ -1,7 +1,7 @@
 class BinHeap:
     def __init__(self):
         self.heapList = [0] #0占位 根节点从1开始
-        self.cuurentSize = 0
+        self.currentSize = 0
 
     def percUp(self,i):
         while i//2 >0:
