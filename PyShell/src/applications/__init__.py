@@ -1,0 +1,17 @@
+__all__ = [
+    "cd",
+    "pwd",
+    "ls",
+    "echo",
+    "cat",
+    "head",
+    "tail",
+    "grep",
+    "cut",
+    "find",
+    "uniq",
+    "sort",
+    "cut",
+    "exit",
+    "cls",
+]
