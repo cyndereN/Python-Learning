@@ -3,10 +3,10 @@ from abc import ABCMeta, abstractmethod
 import sys
 import os
 
-from application_factory import ApplicationFactory
+from applications import ApplicationFactory
 
 
-class Visitor(metaclass=ABCMeta):
+class Visitor(metaclass=ABCMeta):  # pragma: no cover
     """Vistor Interface for Command Class"""
 
     @abstractmethod

@@ -4,7 +4,7 @@ from typing import List, Deque
 from evaluator import Visitor
 
 
-class Command(metaclass=ABCMeta):
+class Command(metaclass=ABCMeta):  # pragma: no cover
     def __init__(self):
         pass
 

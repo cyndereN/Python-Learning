@@ -24,11 +24,12 @@ OTHER_CONTENT : /[^(\`)(\')]+/
 // The start rule of the first parsing is command
 //
 // Command Line
-command : pipe | seq | call
+?command : pipe | seq | call
 pipe    : call _WHITESPACE* "|" _WHITESPACE* call 
         | call _WHITESPACE* "|" _WHITESPACE* pipe
-seq     : command _WHITESPACE* ";" _WHITESPACE* command
-        | command _WHITESPACE* ";" _WHITESPACE* seq
+seq     : (call | pipe) _WHITESPACE* ";"
+        | (call | pipe) _WHITESPACE* ";" _WHITESPACE* (call | pipe)
+        | (call | pipe) _WHITESPACE* ";" _WHITESPACE* seq
 
 
 // Quoting

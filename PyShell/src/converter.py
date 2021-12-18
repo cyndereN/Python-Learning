@@ -8,7 +8,7 @@ from lark.visitors import Interpreter
 from command import Command, Call, Sequence, Pipe
 
 
-class Converter(Interpreter, metaclass=ABCMeta):
+class Converter(Interpreter, metaclass=ABCMeta):  # pragma: no cover
     """Translate the parse tree to AST"""
 
     def __init__(self) -> None:
@@ -49,9 +49,6 @@ class CommandConverter(Converter):
         return self.visit(tree)
 
     """Convert to the AST from section Command Line in grammar.lark"""
-
-    def command(self, tree: Tree):
-        return self.visit(tree.children[0])
 
     def call(self, tree: Tree):
         call = Call()
@@ -96,7 +93,8 @@ class CommandConverter(Converter):
 
     def seq(self, tree: Tree):
         sequence: Sequence = Sequence(self.visit(tree.children[0]))
-        self._append_sequence(tree.children[1], sequence)
+        if len(tree.children) > 1:  # Not the case seq ::= command ";"
+            self._append_sequence(tree.children[1], sequence)
         return sequence
 
     def _append_sequence(self, tree: Tree, sequence: Sequence):
@@ -104,7 +102,8 @@ class CommandConverter(Converter):
             sequence.add_command(self.visit(tree))
         else:
             sequence.add_command(self.visit(tree.children[0]))
-            self._append_sequence(tree.children[1], sequence)
+            if len(tree.children) > 1:  # Not the case seq ::= command ";"
+                self._append_sequence(tree.children[1], sequence)
 
     """Convert to the AST from section Quoting in grammar.lark"""
 
@@ -150,7 +149,7 @@ class CommandConverter(Converter):
         return super()._get_tokens(tree)
 
 
-class ConverterDecorator(Converter, metaclass=ABCMeta):
+class ConverterDecorator(Converter, metaclass=ABCMeta):  # pragma: no cover
     def __init__(self, converter: Converter) -> None:
         self._converter: Converter = converter
 

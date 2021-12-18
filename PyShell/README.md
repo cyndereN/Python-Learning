@@ -25,12 +25,10 @@ Additional features like double parsing, unsafe mode, etc. are also available.
  
 |_src  
   |_ shell.py 
-  |_ applications 
+  |_ applications.py
     |_ ls  
     |_ echo  
     |_...  
-  |_ application.py
-  |_ application_factory.py
   |_ grammar.lark
   |_ converter.py
   |_ visitor.py
@@ -56,6 +54,7 @@ Additional features like double parsing, unsafe mode, etc. are also available.
 
 - Design Patterns(Guru): (<https://refactoringguru.cn/design-patterns>)
 - CS 61 Shell: (<https://cs61.seas.harvard.edu/site/2021/Shell/>)
+- LARK: (<https://lark-parser.readthedocs.io/en/latest/>)
 - Cut: (<https://www.geeksforgeeks.org/cut-command-linux-examples/?ref=gcse>)
 - Uniq: (<https://www.geeksforgeeks.org/uniq-command-in-linux-with-examples/?ref=gcse>)
 - Stdin, out, err: (<https://book.51cto.com/art/201701/528133.htm>)
