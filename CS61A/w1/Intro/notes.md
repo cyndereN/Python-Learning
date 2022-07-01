@@ -6,3 +6,5 @@
 The study of: 2. how to solve those problems 
               3. what technique lead to effective solutions
 
+## 编程
+控制逻辑+业务逻辑
