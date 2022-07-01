@@ -17,7 +17,7 @@ def mergeSort(alist):
     return merged
 
 alist = [1,2,3,4,5,8,7,6]
-mergeSort(alist)
+alist = mergeSort(alist)
 print(alist)
 
 
