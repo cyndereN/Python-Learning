@@ -71,6 +71,9 @@ Higher-order function: A function that takes a function as an argument value or 
 ### 4.2 Currying
 Transforming a multi-argument function into a single-argument, high-order funciton 
 
+
+---
+
 # W2
 ## 1. Recursion
 ### 1.1 Recursive Functions
@@ -78,3 +81,52 @@ The body of that function calss itself, either directly or indirectly.
 
 ## 2. Tree Recursion
 Tree-shaped processes arise whenever executing the body of a recursive function makes more than one call to that function. e.g., Fibonacci
+
+---
+
+# W3
+
+## 1. Sequences & Data Abstraction
+
+### 1.1 Sequences
+
+### 1.2 Data Abstraction
+Compound objects combine objects together
+
+### Abstraction barriers
+
+e.g. violation of barriers:
+```python
+add_rational([1,2], [1,4]) # Does not use constructors
+
+def divide_rational(x,y):
+    return [x[0]*y[1], x[1]*y[0]]  # no selectors, no constructor
+```
+
+### 1.3 List in Envionment Diagrams
+
+| s = [2,3] | t = [5,6] |
+| ----:| ----: |
+| append: |  result:  |
+| s.append(t)   |  s ->  [2,3,[5,6]] |
+|        t = 0          |     t -> 0 |
+| --------------------- | ---------------------- |
+| extend: s.extend(t)   |   result: s = [2,3,5,6] |
+|      t[1] = 0         |    t = [5,0]  |
+| --------------------- | ---------------------- |
+| addition & slicing:   |  result: s->[2,3] |
+| a = s+[t] | t->[5,0] |
+| b = a[1:] | a->[2,9,[5,0]] |
+| b[1][1] = 0 | b->[3,[5,0]] |
+| --------------------- | ---------------------- |
+| list funciton: | result: |
+| t = list(s) | s-> [2,0] |
+| s[1] = 0 | t->[2,3] |
+| --------------------- | ---------------------- |
+| slice assignment | result: |
+| s[0:0] = t | s->[5,6,2,5,6] | 
+| s[3:] = t | t->[5,0] |
+| t[1] = 0 |           |
+| --------------------- | ---------------------- |
+
+## 2. Functional Decomposition & Debugging
