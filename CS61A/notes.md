@@ -93,7 +93,7 @@ Tree-shaped processes arise whenever executing the body of a recursive function 
 ### 1.2 Data Abstraction
 Compound objects combine objects together
 
-### Abstraction barriers
+### 1.3 Abstraction barriers
 
 e.g. violation of barriers:
 ```python
@@ -103,7 +103,7 @@ def divide_rational(x,y):
     return [x[0]*y[1], x[1]*y[0]]  # no selectors, no constructor
 ```
 
-### 1.3 List in Envionment Diagrams
+### 1.4 List in Envionment Diagrams
 
 | s = [2,3] | t = [5,6] |
 | ----:| ----: |
@@ -130,3 +130,24 @@ def divide_rational(x,y):
 | --------------------- | ---------------------- |
 
 ## 2. Functional Decomposition & Debugging
+
+
+### 2.1 Assert
+- require invariants
+- assertions check that code meets an existing understanding
+
+### 2.2 Testing
+- Detect errors in code
+- Have confidence in the correctness of subcomponents
+- Narrow down the scope of debugging
+- Document how your code works
+
+Python provides ***doctest***  ```python3 -m doctest file.py```
+***REPL test*** ```python3 -i file.py```and ***OK integration*** ```python3 ok -q whatever -i```
+
+### 2.3 Handing Errors
+- assertion
+- raise statement
+- try statement
+
+## 3. Trees
