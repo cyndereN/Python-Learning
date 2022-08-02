@@ -151,3 +151,15 @@ Python provides ***doctest***  ```python3 -m doctest file.py```
 - try statement
 
 ## 3. Trees
+
+### 3.1 Slicing list
+Always creating new list
+
+### 3.2 Tree Abstraction
+- A tree has a root label and a list of branches
+- Each branch is a tree 
+
+
+## 4. Mutable Sequences
+
+### 4.1
