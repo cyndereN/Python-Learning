@@ -118,6 +118,7 @@ def divide_rational(x,y):
 | a = s+[t] | t->[5,0] |
 | b = a[1:] | a->[2,9,[5,0]] |
 | b[1][1] = 0 | b->[3,[5,0]] |
+| a[1]=9 | |
 | --------------------- | ---------------------- |
 | list funciton: | result: |
 | t = list(s) | s-> [2,0] |
@@ -162,4 +163,4 @@ Always creating new list
 
 ## 4. Mutable Sequences
 
-### 4.1
+### 4.1 
