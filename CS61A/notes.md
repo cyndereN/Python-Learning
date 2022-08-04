@@ -163,4 +163,11 @@ Always creating new list
 
 ## 4. Mutable Sequences
 
-### 4.1 
+### 4.1 Object
+### 4.2 Mutable Operations
+### 4.3 Tuples
+### 4.4 Mutation
+sameness : is
+equality : ==
+
+a default argument value is part of a function value, not generated b a call
