@@ -1,27 +1,27 @@
 # W1
-## 1. Intro
-### 1.1 An introduction to Computer Science
-#### 1.1.1 What is CS?
+## 1.1 Intro
+### 1.1.1 An introduction to Computer Science
+#### What is CS?
 The study of: 
 1. what probblems can be solved using computation 
 2. how to solve those problems 
 3. what technique lead to effective solutions
 
-#### 1.1.2 编程
+#### 编程
 控制逻辑+业务逻辑
 
-## 2. Function
-### 2.1 Assignments
-#### 2.1.1Environment Diagrams
+## 1.2 Function
+### 1.2.1 Assignments
+#### 1.2.1.1Environment Diagrams
 
 code + frame
 
-#### 2.1.2 Execution Rule for Assignment Statements
+#### 1.2.1.2 Execution Rule for Assignment Statements
 
 1. Evaluate all expressions to the right of = from left to right 
 2. Bind all names to the left of = to the resulting values in the current frame
 
-### 2.1.3 Defining Functions
+### 1.2.1.3 Defining Functions
 
 Assignment is a simple means of abstraction: binds names to values
 
@@ -33,67 +33,67 @@ Function definition: binds names to expressions
 e.g., To look up some name in the body of the square funciton: 
 Look for that name in the local frame. If not found, go to global
 
-## 3. Control
-### 3.1 Print and None
+## 1.3 Control
+### 1.3.1 Print and None
 
-#### 3.1.1 Pure & Non-Pure Functions
+#### 1.3.1.1 Pure & Non-Pure Functions
 
 Pure: just return values
 Non-Pure: have side effects
 
-### 3.2 Statements
+### 1.3.2 Statements
 
 A statenment is executed by the interpreter to perform an action 
 
 The first header determines a statement's type; The header of a clause "controls" the suite that follows; def statements are compound statements
 
-#### 3.2.1 Compoud statements
+#### 1.3.2.1 Compoud statements
 
 A suite is a sequence of statements; To "execute" a suite means to execute its sequence of statements, in order. 
 
-### 3.3 Designing functions
+### 1.3.3 Designing functions
 
 - Give each function exactly one job
 - Don't repeat yourself (DRY)
 - Define functions generally
 
-## 4. Higher-Order Functions
+## 1.4 Higher-Order Functions
 
-### 4.1 Purpose
+### 1.4.1 Purpose
 Functions are first-class: Functions can be manipulated as values in our programming language. 
 
 Higher-order function: A function that takes a function as an argument value or returns a function as a return value
 
 - Express general methods of computation
 - Remove repetition from prgorams
--Separate concerns among funcitons
+- Separate concerns among funcitons
 
-### 4.2 Currying
+### 1.4.2 Currying
 Transforming a multi-argument function into a single-argument, high-order funciton 
 
 
 ---
 
 # W2
-## 1. Recursion
-### 1.1 Recursive Functions
+## 2.1 Recursion
+### 2.1.1 Recursive Functions
 The body of that function calss itself, either directly or indirectly.
 
-## 2. Tree Recursion
+## 2.2 Tree Recursion
 Tree-shaped processes arise whenever executing the body of a recursive function makes more than one call to that function. e.g., Fibonacci
 
 ---
 
 # W3
 
-## 1. Sequences & Data Abstraction
+## 3.1 Sequences & Data Abstraction
 
-### 1.1 Sequences
+### 3.1.1 Sequences
 
-### 1.2 Data Abstraction
+### 3.1.2 Data Abstraction
 Compound objects combine objects together
 
-### 1.3 Abstraction barriers
+### 3.1.3 Abstraction barriers
 
 e.g. violation of barriers:
 ```python
@@ -103,7 +103,7 @@ def divide_rational(x,y):
     return [x[0]*y[1], x[1]*y[0]]  # no selectors, no constructor
 ```
 
-### 1.4 List in Envionment Diagrams
+### 3.1.4 List in Envionment Diagrams
 
 | s = [2,3] | t = [5,6] |
 | ----:| ----: |
@@ -130,14 +130,14 @@ def divide_rational(x,y):
 | t[1] = 0 |           |
 | --------------------- | ---------------------- |
 
-## 2. Functional Decomposition & Debugging
+## 3.2 Functional Decomposition & Debugging
 
 
-### 2.1 Assert
+### 3.2.1 Assert
 - require invariants
 - assertions check that code meets an existing understanding
 
-### 2.2 Testing
+### 3.2.2 Testing
 - Detect errors in code
 - Have confidence in the correctness of subcomponents
 - Narrow down the scope of debugging
@@ -146,28 +146,33 @@ def divide_rational(x,y):
 Python provides ***doctest***  ```python3 -m doctest file.py```
 ***REPL test*** ```python3 -i file.py```and ***OK integration*** ```python3 ok -q whatever -i```
 
-### 2.3 Handing Errors
+### 3.2.3 Handing Errors
 - assertion
 - raise statement
 - try statement
 
-## 3. Trees
+## 3 Trees
 
-### 3.1 Slicing list
+### 3.3.1 Slicing list
 Always creating new list
 
-### 3.2 Tree Abstraction
+### 3.3.2 Tree Abstraction
 - A tree has a root label and a list of branches
 - Each branch is a tree 
 
 
-## 4. Mutable Sequences
+## 3.4 Mutable Sequences
 
-### 4.1 Object
-### 4.2 Mutable Operations
-### 4.3 Tuples
-### 4.4 Mutation
+### 3.4.1 Object
+### 3.4.2 Mutable Operations
+### 3.4.3 Tuples
+### 3.4.4 Mutation
 sameness : is
 equality : ==
 
 a default argument value is part of a function value, not generated b a call
+
+
+# W4
+## 4.1 Mutable Functions
+
