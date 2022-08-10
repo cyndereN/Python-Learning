@@ -1,0 +1,3 @@
+'insert_into_all-correct', (0, 70)
+'subseqs-correct', (512, 70)
+'reverse-correct', (1024, 70)

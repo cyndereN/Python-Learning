@@ -7,7 +7,7 @@ def insert_into_all(item, nested_list):
     >>> insert_into_all(0, nl)
     [[0], [0, 1, 2], [0, 3]]
     """
-    return ______________________________
+    return [[item] + lst for lst in nested_list]
 
 def subseqs(s):
     """Assuming that S is a list, return a nested list of all subsequences
@@ -19,11 +19,11 @@ def subseqs(s):
     >>> subseqs([])
     [[]]
     """
-    if ________________:
-        ________________
+    if not s:
+        return [[]]
     else:
-        ________________
-        ________________
+        all_but_first_subseqs = subseqs(s[1:])
+        return all_but_first_subseqs + insert_into_all(s[0], all_but_first_subseqs)
 
 
 def inc_subseqs(s):
@@ -42,14 +42,14 @@ def inc_subseqs(s):
     """
     def subseq_helper(s, prev):
         if not s:
-            return ____________________
+            return [[]]
         elif s[0] < prev:
-            return ____________________
+            return subseq_helper(s[1:], prev)
         else:
-            a = ______________________
-            b = ______________________
-            return insert_into_all(________, ______________) + ________________
-    return subseq_helper(____, ____)
+            a = subseq_helper(s[1:], prev)
+            b = subseq_helper(s[1:], s[0])
+            return insert_into_all(s[0], b) + a
+    return subseq_helper(s, -1)
 
 
 def trade(first, second):
@@ -81,9 +81,9 @@ def trade(first, second):
     """
     m, n = 1, 1
 
-    equal_prefix = lambda: ______________________
-    while _______________________________:
-        if __________________:
+    equal_prefix = lambda: sum(first[:m]) == sum(second[:n])
+    while m <= len(first) and n <= len(second) and not equal_prefix():
+        if  sum(first[:m]) < sum(second[:n]):
             m += 1
         else:
             n += 1
@@ -108,6 +108,17 @@ def reverse(lst):
     [-8, 72, 42]
     """
     "*** YOUR CODE HERE ***"
+    # if len(lst) == 0:
+    #     return []  # base case
+    # else:
+    #     return [lst.pop()] + reverse(lst)  # recusrive case
+    idx = range(len(lst))
+    for i, j in zip(idx, idx[::-1]):
+        if i >= j:
+            break
+        print("DEBUG: swap", lst[i], lst[j])
+        lst[i], lst[j] = lst[j], lst[i]
+
 
 
 cs61a = {
@@ -135,6 +146,15 @@ def make_glookup(class_assignments):
     0.8913043478260869
     """
     "*** YOUR CODE HERE ***"
+    credit_so_far = 0
+    credit_total_so_far = 0
+    def look_up(section, credit):
+        assert section in class_assignments, "invalid assignment name"
+        nonlocal credit_so_far, credit_total_so_far
+        credit_total_so_far += class_assignments[section]
+        credit_so_far += credit
+        return credit_so_far/credit_total_so_far
+    return look_up
 
 
 def num_trees(n):
@@ -157,9 +177,9 @@ def num_trees(n):
     429
 
     """
-    if ____________________:
-        return _______________
-    return _______________
+    if n == 1 or n == 2:
+        return 1
+    return num_trees(n-1)*2*(2*n-3)//n
 
 
 def make_advanced_counter_maker():
@@ -191,13 +211,25 @@ def make_advanced_counter_maker():
     >>> tom_counter('global-count')
     1
     """
-    ________________
-    def ____________(__________):
-        ________________
-        def ____________(__________):
-            ________________
+    global_count = 0
+    def advanced_counter_maker():
+        local_count = 0
+        def advanced_count(count_type):
+            nonlocal global_count, local_count
             "*** YOUR CODE HERE ***"
-            # as many lines as you want
-        ________________
-    ________________
+            if count_type == "global-count":
+                global_count += 1
+                return global_count
+            elif count_type == "count":
+                local_count += 1
+                return local_count
+            elif count_type == "global-reset":
+                global_count = 0
+            elif count_type == "reset":
+                local_count = 0
+            else:
+                raise TypeError("invalid instruction")
+
+        return advanced_count
+    return advanced_counter_maker
 
