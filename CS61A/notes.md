@@ -197,3 +197,25 @@ lazy
 
 ### 4.2.3 Generator 
 yield from yields all values from an iterator or iterable
+
+
+# W5
+
+## 5.1 Objects
+
+### 5.1.1 OOP
+A method for organizing modular programs
+- Abstraction barriers
+- Bundling together information and related behavior
+### 5.1.2 Invoking method
+All invoked methods have access to the object via the self parameter, so they can all access and manipulate the object's state 
+
+### 5.1.3 Method & Attributes
+Object + Function = Bound Method
+getattr(obj, 'attr'); hasattr(obj, 'attr')
+
+## 5.2 Inheritance 
+
+## 5.3 Linked Lists & Trees 
+
+## 5.4 Interfaces 
