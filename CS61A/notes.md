@@ -215,6 +215,13 @@ Object + Function = Bound Method
 getattr(obj, 'attr'); hasattr(obj, 'attr')
 
 ## 5.2 Inheritance 
+### 5.2.1 Looking Up Attribute Names on Classes
+
+Base class attribute aren't copied into subclasses!
+To look up a name in class:
+1. If it names an attribute in the class, return the attribute value.  
+2. Otherwise, look up the name in the base class, if there is one.
+
 
 ## 5.3 Linked Lists & Trees 
 
