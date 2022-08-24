@@ -224,5 +224,6 @@ To look up a name in class:
 
 
 ## 5.3 Linked Lists & Trees 
+A linked list is either empty or a first value and the rest of the linked list
 
 ## 5.4 Interfaces 
