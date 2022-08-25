@@ -1,7 +1,7 @@
 def make_withdraw(balance):
     """Return a withdraw function with a starting balance."""
     def withdraw(amount):
-        nonlocal balance
+        nonlocal balance    # ***nonlocal*** Only works for nested funcitons. ***global*** might be the keyword.
         if amount > balance:
             return 'Insufficient funds'
         balance = balance - amount
