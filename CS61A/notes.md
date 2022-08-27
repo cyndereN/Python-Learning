@@ -227,3 +227,5 @@ To look up a name in class:
 A linked list is either empty or a first value and the rest of the linked list
 
 ## 5.4 Interfaces 
+
+### 5.4.1 string
