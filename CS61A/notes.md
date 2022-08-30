@@ -228,4 +228,42 @@ A linked list is either empty or a first value and the rest of the linked list
 
 ## 5.4 Interfaces 
 
-### 5.4.1 string
+# W6
+
+## 6.1 Scheme
+Scheme is a Dialect of Lisp
+
+```scheme
+(define (abs x)
+    (if (< x 0)
+        (- x)
+        x)
+)
+
+(define (square x) (* x x))
+
+(define square (lambda (x) (* x x)))
+
+((lambda(x y z) (+ x y (square z))) 1 2 3)
+```
+
+### 6.1.1 List
+
+### 6.1.2 Symbolic Programming
+
+### 6.1.3 Programming Languages
+
+## 6.2 Interpreters
+
+## 6.3 More Scheme
+
+## 6.4 Macros
+A macro is an operation performed on the source code of a program before evaluation
+
+# W7
+
+## 7.1 Streams
+## 7.2 Declarative Programming
+## 7.3 Final Review
+
+# W8
