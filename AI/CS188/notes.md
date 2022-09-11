@@ -78,3 +78,24 @@ Run DFS with deep limit 2: if not ...
 都是Complete且Optimal
 
 ## 2.2 A* Search and Heuristics
+
+
+we only stop when dequeue a goal, not enqueue a goal
+
+A* is not optimal(because heuristic is not always correct? (inadmissible, pessimistic))
+
+***Admissibility***:
+h is admissible if 0 <= h(n) <= h*(n), where h*(n) is the true cost to a nearest goal. e.g. Manhattan Distance
+
+***Dominance***: ha >= hc if for any n, ha(n) >= hc(n)
+Max ofd admissible heuristics is admissible: h(n) = max(ha(n), hb(n))
+
+#### 2.2.3 Graph Search
+
+Idea: Never expand a state twice
+- Tree search + "closed set"
+- Expand the search tree node-by-node, but...
+- Before expanding a node, check to make sure its state has never been expanded before
+- If not new, skip it, if new add to closed set
+
+***Consistency***: h(A) - h(C) <= cost(A to C)
