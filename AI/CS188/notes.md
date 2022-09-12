@@ -78,7 +78,12 @@ Run DFS with deep limit 2: if not ...
 都是Complete且Optimal
 
 ## 2.2 A* Search and Heuristics
+### 2.2.1 Heuristics
 
+A heuristic is is a function that estimates how close state is to a goal. Designed for a particular search problem
+
+
+### 2.2.2 A* Search
 
 we only stop when dequeue a goal, not enqueue a goal
 
@@ -99,3 +104,23 @@ Idea: Never expand a state twice
 - If not new, skip it, if new add to closed set
 
 ***Consistency***: h(A) - h(C) <= cost(A to C)
+If hh is consistent, then A* graph search finds an optimal solution.
+
+
+# W3 Constraint Satisfaction Problems（约束满足问题）
+
+## 3.1 CSP 1
+
+"What is search for?"
+- Assumptions about a world: a single agent, deterministic actions, fully observed state, discrete state space. Deterministic  
+- Planning: sequences of actions
+    - The path to the goal is the important thing
+    - Paths have various costs, depths
+    - Heuristics give problem-specific guidance
+- Identification: assignments to variables
+    - The goal it self is important, not the path
+    - All paths at the same depth (for some formulations)
+    - CSPs are a specialized class of identification problems
+(Planning像是小偷确定如何偷东西的步骤，Identification像是侦探根据线索倒推如何失窃的过程)
+
+## 3.2 CSP 2
