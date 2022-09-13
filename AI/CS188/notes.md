@@ -123,4 +123,51 @@ If hh is consistent, then A* graph search finds an optimal solution.
     - CSPs are a specialized class of identification problems
 (Planning像是小偷确定如何偷东西的步骤，Identification像是侦探根据线索倒推如何失窃的过程)
 
+
+### 3.1.1 Difference between Standard Search Problems
+
+- Standard Search Problems:
+    - State is a "black" box: arbitary data structure (can only call GetSuccessor(), isGoal())
+    - Goal test can be any function over states
+    - Successor functgion can also be anything
+
+- CSP(e.g., Color Mapping, N-Queens, Sudoku)
+    - A special subset of search proiblems
+    - State is defined by variables Xi with values from a domain D (sometimes D depends on i)
+    - Goal test is a set of constraints specifying allowable combinations of values for subsets of variables
+
+### 3.1.2 Standard Search Formulations
+States defined by the values assigned so far (partial assignments)
+- Initial state: {}
+- Successor function: assign a value to an unassigned variable
+- Goal test: the current assignment is complete and satisfies all constraints
+
+#### 3.1.2.1 Search Methods
+For example, color mapping problem.
+DFS. Naive way. Better idea?
+Backtracking Search.
+
+#### 3.1.2.2 Backtracking Search
+- One variable at a time
+    - variable assignments are commutative, so fix ordering. i.e., [WA = red then NT = green] same as [NT = green then WA = red]
+    - only need to consider assignments to a single variable at each step
+- Check constraints as you go
+
+Backtracking = DFS + variable-ordering + fail-on-violation
+
+#### 3.1.2.3 Filtering
+***Filtering***: Keep track of domains for unassigned variables and cross off bad options.
+***Forward Checking***: Cross off values that violates a constraint when added to the existing assignment
+
+***Constraint Propagation***: Reason from constraint to constraint
+
+### 3.1.3 Arc Consistency
+An arc X->Y is consistent iff for every x in the tail there is some y in the head which could be assigned without violating a constraint
+
+***Forward Checking***: Enforcing consistency of arcs pointing to each new assignment
+
+### 3.1.4 Ordering
+Variable Ordering: Minimum remaiuning values(MRV)
+Choose the variable with the fewest legal left values in its domain
+
 ## 3.2 CSP 2
