@@ -171,3 +171,33 @@ Variable Ordering: Minimum remaiuning values(MRV)
 Choose the variable with the fewest legal left values in its domain
 
 ## 3.2 CSP 2
+NP-Hard 
+
+Arc consistency detects failure earlier than forward checking 
+
+filter - assign - fileter - assign ...
+
+### 3.2.1 K-Consistency
+
+"Instead of checking all arcs are following the rule, check all triples or quads"
+
+1-Consistency (Node Consistency): Every node domain has a value which meets that nodes's unary constraints
+
+2-Consistency (Arc Consistency): For each pair of nodes, any consistent assignment to one can be extended to the other
+
+K-Consistency: For each k nodes, any consistent assignment to k-1 ca be extended to the kth node.
+
+Strong n-consistency means we can solve without backtracking
+
+### 3.2.2 Tree-Structured CSPs
+
+(Only need Arc-consistency)
+
+If the constraint graph has no loops, the CSP can be solved in O(nd^2), compare to General CSPs where worst-case time is O(d^n)
+
+
+### 3.2.3 Iterative Algorithms for CSPs
+
+### 3.2.4 Simulated Annealing
+
+"Solve" the hill climbing problem by allowing some "downhill" moves
