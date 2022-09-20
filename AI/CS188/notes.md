@@ -201,3 +201,69 @@ If the constraint graph has no loops, the CSP can be solved in O(nd^2), compare 
 ### 3.2.4 Simulated Annealing
 
 "Solve" the hill climbing problem by allowing some "downhill" moves
+
+
+# W4 Game Trees
+
+"solved": You know you can force a win or draw if both sides play optimally
+## 4.1 Minimax (Adversarial Search)
+
+### 4.1.1 Types of Games
+
+- Deterministic or stochastic?
+- One, two or more players?
+- Zero sum?
+- Perfet information (can you see the state)?
+
+### 4.1.2 Zero-sum Game
+
+- Agents have opposite utilities (value on outcome)
+- Let us think of a single value that one maximizes and the other minimizes
+- Adversarial, pure competition
+
+### 4.1.3 Adversarial Search
+
+You do -> Adversary do against you -> You do ...
+
+- A state-space search tree
+- Players alternate turns
+- Compute each node's minimax value: the best achievable utility against a rational(optimal) adversary
+
+```
+def value(state):
+    if the state is a terminal state: return the state's utility
+    if the next angent is MAX: return max-value(state)
+    if the next agent is MIN: return min-value(state)
+
+def max-value(state):
+    intitialize = - ∞
+    for each successor of state:
+        v = max(v, value(successor))
+    return v
+
+def min-value(state):
+    intitialize = - ∞
+    for each successor of state:
+        v = min(v, value(successor))
+    return v
+```
+
+***Time Complexity:*** O(b^m)  
+***Space Complexity:*** O(bm)
+
+
+### 4.1.4 Alpha-Beta Pruning
+
+With “perfect ordering”:  
+- Time complexity drops to O(bm/2)
+- Doubles solvable depth!
+- Full search of, e.g. chess, is still hopeless
+- This is a simple example of metareasoning 
+
+![ab](./assets/ab.png)
+
+Evaluation functions are always imperfect.  
+The deeper in the tree the evaluation function is buried, the less the quality of the evaluation function matters. 
+
+
+## 4.2 Expectimax, Utilities
