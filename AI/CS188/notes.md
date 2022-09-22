@@ -265,5 +265,30 @@ With “perfect ordering”:
 Evaluation functions are always imperfect.  
 The deeper in the tree the evaluation function is buried, the less the quality of the evaluation function matters. 
 
+![abquiz](./assets/abquiz.png)
 
-## 4.2 Expectimax, Utilities
+## 4.2 Expectimax, Uncertainty and Utilities
+
+### 4.2.1 Expectimax Search
+
+Expectimax search: compute the average score under optimal play
+
+- Max nodes as in minimax search
+- Chance nodes are like min nodes but the outcome is uncertain
+- Calculate their expected utilities
+- I.e. take weighted average (expectation) of children
+
+![expectimax](./assets/expectimax.png)
+
+***Dangerous Optimism*** Assuming chance when the world is adversarial
+
+***Dangerous Pessimism*** Assuming the worst case when it’s not likely
+
+![expectimax_minimax](./assets/expecti_vs_mini.png)
+
+![multi_utilities](./assets/multi_utilities.png)
+
+### 4.2.2 Uncertainty 
+
+![prize](./assets/prize.png)
+
