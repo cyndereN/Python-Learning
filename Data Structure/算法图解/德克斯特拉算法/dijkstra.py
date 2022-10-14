@@ -45,3 +45,8 @@ while node is not None:
             parents[n] = node
     processed.append(node)
     node = find_lowest_cost_node(costs)
+
+
+# Fibonacci heap: O(|E| + |V| log |V|)
+# binary heap: O((|E| + |V|) log |V|)
+# unsorted array: O(|V|^2)
