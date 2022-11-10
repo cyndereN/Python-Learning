@@ -69,7 +69,7 @@
 # 机器学习
 
 ## 什么是学习
-
+LEARNING = REPRESENTATION + EVALUATION + OPTIMIZATION
 - 人
     - 学习理论，在实战经验中总结
     - 在理论上推导，在实践中检验
@@ -90,7 +90,7 @@ ML主要研究计算机系统对于特定任务的性能，逐步进行改善的
 - 无监督学习：提供数据不提供对应结果
 - 强化学习：通过与环境交互并获取反馈延迟返回进而改进行为的学习过程
 
-## 监督学习
+# 监督学习
 - 包括分类和回归（相当于函数拟合）两类
 - 如果输出被限制为有限的一组数值（离散数值）时使用分类算法；当输出可以具有范围内的任何数值（连续数值）时使用回归算法
 - 相似度学习是回归和分类都密切相关的一类监督机器学习，它的目的是使用相似性函数从样本中学习，这个函数可以度量两个对象之间的相似度或关联度
@@ -123,18 +123,19 @@ e.g., 线性回归在这里指的是模型，不是算法
 
 - 遵循奥卡姆剃刀原则：若无必要，勿增实体
 
-### 回归问题
+# 回归问题
 ![回归问题](./assets/huiguiwenti.jpg)
 - 也可以用梯度下降，牛顿法，拟牛顿法。梯度下降法只考虑一阶导数，牛顿法考虑二阶导数，所以收敛速度更快。牛顿法需要求解海塞矩阵逆矩阵，逆牛顿法通过正定矩阵近似海塞矩阵的逆矩阵
 
-# 线性回归
+
+## 线性回归
 
 ![求解线性回归](./assets/xianxinghuigui.jpg)
 ![梯度下降](./assets/gradien_decent.jpg)
 ![一元GD](./assets/yiyuan_GD.jpg)
 a 称为学习率或补偿，不能太大也不能太小。（交叉验证）
 
-## 梯度下降法与最小二乘法
+### 梯度下降法与最小二乘法
 - 相同点
     - 本质和目标相同：两种都是经典的机器学习算法，在给定已知数据的前提下利用求导算出一个模型（函数），使得损失函数最小，然后对给定的新数据进行估算预测
 - 不同点
@@ -142,9 +143,25 @@ a 称为学习率或补偿，不能太大也不能太小。（交叉验证）
     - 实现方法：最小二乘法直接求导找出全局最小，而梯度下降是一种迭代法
     - 效果：最小二乘法找到的一定是全剧最小，但计算繁琐，且复杂情况下未必有解。梯度下降法计算简单但一般是局部最小，只有目标函数是凸函数时才是全局最小；到最小点附近时收敛速度会变慢，且对初始点的选择极为敏感
 
-# 逻辑斯蒂回归
 
-## Sigmoid函数（压缩函数）
+# 分类问题
+
+- knn
+- 逻辑斯蒂回归
+- 决策树
+- 朴素贝叶斯
+
+![](./assets/classification_approaches.png)
+
+## KNN
+
+![KNN](./assets/knn.png)
+
+![KNN示例](./assets/knn_example.png)
+
+## 逻辑斯蒂回归
+
+### Sigmoid函数（压缩函数）
 ![Sigmoid](./assets/sigmoid.png)
 
 将线性回归拟合出来的值用压缩函数进行压缩，压缩完成后用0.5作为一个概率的判定边界，就能把样本分成两类，即正样本和负样本（里面用是否大于0作区分，外面是否大于0.5）
@@ -155,6 +172,68 @@ a 称为学习率或补偿，不能太大也不能太小。（交叉验证）
 
 - z的表达式应为分类边界
 
-## 损失函数
+### 损失函数
 ![](./assets/sunshihanshu.png)
 ![](./assets/logistic_zhengzehua.png)
+
+
+多分类有softmax function
+
+### 与knn区别
+
+Basically, KNN assumes points that are closer to each other must have the same label, it suffers from the curse of dimensionality so I recommend you to use it only with low dimensional data sets with a small number of samples(since is very slow). On the other hand, logistic regression fits a hyperplane that separates two probability distributions from the exponential family, it goes very well on high dimensional data sets with a lot of training points, but if your data is not linearly separable the algorithm won't work at all.
+
+![DvG](./assets/DvG.webp)
+
+- 判别式模型举例：要确定一个羊是山羊还是绵羊，用判别模型的方法是从历史数据中学习到模型，然后通过提取这只羊的特征来预测出这只羊是山羊的概率，是绵羊的概率。
+
+- 生成式模型举例：利用生成模型是根据山羊的特征首先学习出一个山羊的模型，然后根据绵羊的特征学习出一个绵羊的模型，然后从这只羊中提取特征，放到山羊模型中看概率是多少，在放到绵羊模型中看概率是多少，哪个大就是哪个。
+
+- 细细品味上面的例子，判别式模型是根据一只羊的特征可以直接给出这只羊的概率（比如logistic regression，这概率大于0.5时则为正例，否则为反例），而生成式模型是要都试一试，最大的概率的那个就是最后结果
+
+## 朴素贝叶斯
+
+![](./assets/Nb.png)
+通过拉普拉斯平滑消除0项
+![](./assets/laplacian.png)
+
+
+### 与逻辑斯蒂回归区别
+
+贝叶斯是理论，逻辑回归只是一个模型
+优化目标不同，lr优化的后验likelihood，nb优化的是联合likelihood 
+贝叶斯是条件独立假设，不可以使用梯度下降，而是直接统计每个特征的逻辑发生比
+
+
+## 决策树
+
+简单高效并具有强解释性的模型。本质是一棵自上而下的由多个判断结点组成的树。if-then规则集互斥且完备
+
+![](./assets/DecisionTree_Goal.png)
+
+![Entropy](./assets/Entropy.png)
+![EntropyExample](./assets/Entropy_example.png)
+![EntropyExample2](./assets/Entropy_example_2.png)
+![EntropyExample3](./assets/Entropy_example_3.png)
+![](./assets/xinxizengyi.png)
+
+算法：
+- ID3 找到信息增益最大的特征
+- C4.5 ID3的改进，用信息增益比来选择特征
+- CART(分类回归树)
+    - 由特征选择、树的生成和剪枝三部分组成
+    - 既可用于分类也可用于回归
+    - 剪枝解决过拟合问题
+
+
+# 无监督学习
+
+- 聚类
+    - k均值
+    - 基于密度的分类
+    - 最大期望聚类
+
+- 降维
+    - 浅语义分析(lsa)
+    - 主成分分析(pca)
+    - 奇异值分析(svd)
