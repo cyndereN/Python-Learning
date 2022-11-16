@@ -97,9 +97,9 @@ ML主要研究计算机系统对于特定任务的性能，逐步进行改善的
 
 ### 三要素
 
-- 模型：总结数据的内在规律，用数学函数描述的系统
-- 策略：选取最优模型的评价准则
-- 算法：选取最优模型的具体方法
+- 模型：总结数据的内在规律，用数学函数描述的系统(Representation)
+- 策略：选取最优模型的评价准则(Evaluation)
+- 算法：选取最优模型的具体方法(Optimization)
 
 e.g., 线性回归在这里指的是模型，不是算法
 
@@ -237,3 +237,22 @@ Basically, KNN assumes points that are closer to each other must have the same l
     - 浅语义分析(lsa)
     - 主成分分析(pca)
     - 奇异值分析(svd)
+
+
+# Model Selection
+
+How to choose the best hyperparameter / learning algorithm / model for a particular problem 
+
+- Empirical Training Set Loss (Cannot use test set) 
+    - Not always useful because when increasing the "Complextity" of f, Emperical loss of training set decreases while Emperical loss of test set increases.
+
+- Validation Techniques
+    - ![](./assets/validation.jpg)
+- Cross Validation Techniques
+    - Split into k sets, run learning  algorithm k times (k = 5 or 10 might be better)
+- PAC Learning
+    - probabilistic worst-case bound
+    - 通过算法 A 在训练数据集S上学到了一个最优函数 h(A,S)。那么h(A,S)放在世界上所有的测试数据上效果会如何呢？也就是它的损失期望 R(h(A,S)) 会是如何呢？如果是PAC learnable的话，在数据个数m 不是特别多的情况下，至少有 1- delta (Probably) 的概率，R(h(A,S))不超过 epsilon (Approximately Accurate)
+
+PAC Bounds are too loose to be useful;
+The Cross Validation loss is a practical and empirically good alternative estimator, and widely used
