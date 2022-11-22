@@ -256,3 +256,11 @@ How to choose the best hyperparameter / learning algorithm / model for a particu
 
 PAC Bounds are too loose to be useful;
 The Cross Validation loss is a practical and empirically good alternative estimator, and widely used
+
+
+# 多分类问题
+$$\sigma(\vec{z})_{i}=\frac{e^{z_{i}}}{\sum_{j=1}^{K} e^{z_{j}}}$$
+
+## Softmax Regression
+
+![](./assets/softmax_cost.png)
