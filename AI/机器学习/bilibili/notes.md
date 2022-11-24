@@ -217,7 +217,16 @@ Basically, KNN assumes points that are closer to each other must have the same l
 ![EntropyExample3](./assets/Entropy_example_3.png)
 ![](./assets/xinxizengyi.png)
 
-算法：
+什么时候停止splitting?
+
+- When a node is 100% one class
+- When splitting a node will result in tree exceeding a maximum depth
+- When improvements in purity score are below a threshold
+- When number of examples in a node is below a threslhold
+
+##### Regression Tree
+![](./assets/Choosing_split_RT.png)
+##### 算法：
 - ID3 找到信息增益最大的特征
 - C4.5 ID3的改进，用信息增益比来选择特征
 - CART(分类回归树)
