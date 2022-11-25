@@ -63,7 +63,7 @@
 - 在线实验
 
 ![混淆矩阵](./assets/hunxiaojuzhen.jpg)
-![精确率](./assets/hunxiaojuzhen.jpg)
+![精确率](./assets/jingquelv.jpg)
 
 
 # 机器学习
