@@ -273,3 +273,26 @@ $$\sigma(\vec{z})_{i}=\frac{e^{z_{i}}}{\sum_{j=1}^{K} e^{z_{j}}}$$
 ## Softmax Regression
 
 ![](./assets/softmax_cost.png)
+
+
+# SVM
+![](./assets/SVM_intro.png)
+SVM设计的目的就在于此：光正确分类还不够，还得分的标准 - 引入支持向量的概念。
+![](./assets/SVM_hypo.png)
+C plays a role similar to $1/\lambda$
+![](./assets/SVM_cg_C.png)
+![](./assets/SVM_proc1.png)
+![](./assets/SVM_proc2.png)
+
+所以接下来优化器为了达到更低的损失值，会选择将 ||θ|| 最小化
+
+于是，在 ||θ|| 最小化的同时，若想保持分类结果θTX稳定，p必将趋向于最大化，而p又是样本点X到分类边界的距离，当这个距离已经增大到某个极限值的时候，恭喜你，找到支持向量了。
+
+#### Kernel Methods
+解决非线性不可分问题
+![](./assets/Kernel_intro.png)
+![](./assets/Kernel_eg.png)
+
+#### 与神经网络联系
+在神经网络中，如果采用交叉熵作为cost function ，那么该函数的输入将是激活函数（相当于假设函数）的预测输出，激活函数除了sigmoid函数外，还可选择relu、tanh、elu、relu6、leaky-relu等等。
+SVM中，核函数起到了类似激活函数的作用，除高斯核函数外，也可选择线性核函数、多项式核函数等等。
