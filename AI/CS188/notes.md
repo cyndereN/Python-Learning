@@ -293,7 +293,7 @@ Expectimax search: compute the average score under optimal play
 ![prize](./assets/prize.png)
 
 # W5 Markov Decision Process
-
+(https://blog.csdn.net/liubai01/article/details/84441464#t7)
 ## 5.1 MDPs I
 
 ### 5.1.1 Non-Deterministic Search 不确定搜索 
@@ -327,3 +327,97 @@ Expectimax search: compute the average score under optimal play
 
 ![](./assets/Policy_Extraction.png)
 ![](./assets/Policy_Iteration.png)
+
+# W6 Reinforcement Learning
+
+## 6.1 RL I
+
+### 6.1.1 Model-based
+
+Step1: Learn emprical MDP model
+
+- Count outcomes s' for each s, a
+- Normalize to give an estimate of T(s, a, s')
+- Discover each R(s, a, s') when we experience (s, a, s')
+
+Step2: Solve the learned MDP
+- Use methods mentioned before (value iteration)
+
+
+![](./assets/RL_Model_based.png)
+
+
+### 6.1.2 Model-free
+Intuition: 不去还原MDP的transition model和reward方程，只是对用于做决策值进行估计。例如（Q值和V值）
+#### 6.1.2.1 Passive
+Simplified task: policy evaluation (w.r.t: a fixed policy) with unknown T and R.
+
+Direct v.s. Indirect Evaluation
+
+##### 6.1.2.1.1 Direct evaluation(Passive)
+- Goal: Compute values for each state under π
+
+- Idea: Average together observed sample values
+
+    - Act according to π
+    - Every time you visit a state, write down what the sum of discounted rewards turned to be(remark: may complete when reviewing the process, since knowing sum of discounted rewards means you need to know the future with respect to the current state)
+    - Average those samples
+- Pros: It is easy to understand. It doesn't require any knowledge of T, R. It eventually computes the correct average values, using just sample transitions.
+
+- Cons: It wastes information about state connections. Each state must be learned separately. So, it takes a long time to learn.
+
+##### 6.1.2.1.2 Temporal Difference Learning(Passive)
+Intuition: base on fixed policy, evaluate V(s) value each time we experience a transistion (s, a, s', r).
+
+Formula:
+![](./assets/RL_Temporal_difference.png)
+
+Remark: to be temporally invariant, decrease alpha after trainning a long time.
+
+Limitation: V value is hard to be updated a new policy. (TODO: learn Q-value instead of V, model-free!)
+
+##### 6.1.2.1.3 Q-Learning(Passive)
+![](./assets/RL_Q_learning.png)
+
+#### 6.1.2.2 Active
+Goal: Learn optimal policy/values with unknown T and R.
+
+Trade-off: exploration vs. exploitation
+
+Common terms in RL context:
+
+1. Exploration: you have to try unknown actions to get information
+2. Exploitation: eventually, you have to use what you know
+3. Regret: even if you learn intelligently, you make mistakes
+4. Sampling: because of chance, you have to try things repeatedly
+5. Difficulty: learning can be much harder than solving a known MDP
+
+##### 6.1.2.2.1 Q-Learning(Active)
+Learner makes choices with variant policy (according to current values/policy, and also explore).
+
+Amazing result: Q-Learning converges to optimal policy -- even if you're acting suboptimally!
+
+### 6.1.3 Summary
+
+![](./assets/RL_summary_1.png)
+
+## 6.2 RL II
+
+### 6.2.1 Learning Policy
+
+#### 6.2.1.1  ε greedy
+
+With (small) probability ε, act randomly
+
+With(large) probaility ε, act on current policy 
+
+#### 6.2.1.2 Exploration functions
+
+![](./assets/RL_exploration.png)
+
+#### 6.2.1.3 Generalizing Across States 
+
+#### 6.2.1.4 Feature-based Representations 
+
+Linear Value Function
+Q(s, a) = w1f1(s, a) + w2f2(s, a) + ... + wnfn(s, a)
