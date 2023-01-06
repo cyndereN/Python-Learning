@@ -421,3 +421,61 @@ With(large) probaility ε, act on current policy
 
 Linear Value Function
 Q(s, a) = w1f1(s, a) + w2f2(s, a) + ... + wnfn(s, a)
+
+# W7 Probability and Bayes' Nets 1
+
+## 7.1 Probability
+
+## 7.2 BNs: Representation
+
+### 7.2.1 Probalistic Model
+
+- Explaination (diagnostic reasoning)
+- Prediction (casual reasoning)
+- Value of information
+
+### 7.2.2 BN Semantics
+
+- A set of nods, one per variable x
+- A directed acyclic graph
+- A conditional distribution for each node
+
+
+## W8 Bayes' Nets 2
+
+### 8.1 BNs: Independence
+
+
+## W9 Bayes' Nets 3
+
+### 9.1 BNs: Inference
+Calculating some useful quantity from a joint probability distribution
+
+#### 9.1.1 Inference by Enumeration 
+
+Join Factors -> Eliminate
+
+#### 9.1.2 Variable Elimination
+
+Marginalizing early
+
+![](./assets/BN_VE.png)
+
+- Inerleave joining and marginalizing
+
+- d^k entries computed for a factor over k variables with domain sizes d
+
+- Ordering of elimination of hidden variables can effect size of factors generated
+
+- Worst case: running time exponential in the size of the bayes' net
+
+### 9.2 BNs: Sampling
+
+- Prior Sampling
+- Rejection Sampling
+- Likelihood Sampling
+- Gibbs Sampling
+
+## W10 Decision Networks / VPI / Hidden Markov Models
+
+### 10.1 Decision Networks and Value of Information
