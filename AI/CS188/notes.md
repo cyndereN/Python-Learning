@@ -479,3 +479,35 @@ Marginalizing early
 ## W10 Decision Networks / VPI / Hidden Markov Models
 
 ### 10.1 Decision Networks and Value of Information
+
+![](./assets/DN.png)
+
+### 10.2 HMMs
+
+https://blog.csdn.net/liubai01/article/details/84206592
+
+## W11 Particle Filtering / Apps of HMMs / Naive Bayes
+
+### 11.1 HMMs, Particle Filters, and Applications
+
+### 11.2 ML: NB
+
+## W12 ML: Artificial Neural Networks
+
+### 12.1 ML: Perceptrons and Logistic Regression
+
+![](./assets/MLE.png)
+
+### 12.2 ML: Optimization and Neural Networks
+
+![](./assets/NN_summary.png)
+## W13 ML: Neural Networks II and Decision Trees
+
+### 13.1 ML: Neural Networks II and Decision Trees
+
+
+## W15 Advanced Topics
+
+### 15.1 Robotics / Language / Vision
+
+### 15.2 Advanced Topics
