@@ -91,6 +91,7 @@ class BinHeap: #最小堆
         print(self.heapList)
         
 
+    # O(n)
     def heapify(self, i, heapSize):
          # 左节点的位置
         p = 2 * i 
